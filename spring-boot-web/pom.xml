@@ -10,10 +10,10 @@
 	</parent>
 	<groupId>com.bolsadeideas.springboot.app</groupId>
 	<artifactId>spring-boot-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>spring-boot-web</name>
 	<description>Demo project for Spring Boot</description>
-	<packaging>war</packaging>
+	<!-- <packaging>war</packaging> -->
 	<properties>
 		<java.version>11</java.version>
 	</properties>
