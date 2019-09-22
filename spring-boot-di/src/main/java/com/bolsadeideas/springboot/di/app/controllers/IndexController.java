@@ -1,20 +1,27 @@
 package com.bolsadeideas.springboot.di.app.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.bolsadeideas.springboot.di.app.models.services.IServicio;
 import com.bolsadeideas.springboot.di.app.models.services.MiServicio;
 
 @Controller
 public class IndexController {
 
-	private MiServicio servicio= new MiServicio();
+	@Autowired
+	@Qualifier("miServicioComplejo")
+	private IServicio servicio;
 	
-	@GetMapping({"/","","index"})
+	@GetMapping({"/","","/index"})
 	public String index(Model model) {
 		
 		model.addAttribute("objecto",servicio.operacion());
 		return "index";
 	}
+	
+	
 }
