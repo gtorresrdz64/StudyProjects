@@ -7,13 +7,14 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 @Component
 @RequestScope
-public class Factura implements Serializable{
+public class Factura implements Serializable {
 
 	/**
 	 * 
@@ -24,17 +25,18 @@ public class Factura implements Serializable{
 	@Autowired
 	private Cliente cliente;
 	@Autowired
+	//@Qualifier("default")
 	private List<ItemFactura> items;
-	
+
 	@PostConstruct
 	public void inicializar() {
-		cliente.setNombre(cliente.getNombre()+" "+"Dev");
-		descripcion= descripcion.concat(" del cliente: ").concat(cliente.getNombre());
+		cliente.setNombre(cliente.getNombre() + " " + "Dev");
+		descripcion = descripcion.concat(" del cliente: ").concat(cliente.getNombre());
 	}
-	
+
 	@PreDestroy
 	public void destruir() {
-		System.out.println("Factura destruida: "+descripcion);
+		System.out.println("Factura destruida: " + descripcion);
 	}
 
 	public String getDescripcion() {
