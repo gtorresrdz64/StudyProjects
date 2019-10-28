@@ -45,7 +45,7 @@ public class PageRender<T>{
 		}
 		
 		for (int i = 0; i < hasta; i++) {
-			paginas.add(new PageItem(desde+1, paginaActual == desde+i));
+			paginas.add(new PageItem(desde+i, paginaActual == desde+i));
 			
 		}
 	}
@@ -66,21 +66,21 @@ public class PageRender<T>{
 		return paginas;
 	}
 	
-	public boolean isFist() {
+	public boolean isFirst() {
 		return page.isFirst();
 	}
-	public boolean isLast() {
-		return page.isLast();
-	}
-	public boolean hasNext() {
-		return page.hasNext();
-	}
-	public boolean hasPrevious() {
+	
+	public boolean isHasPrevious() {
 		return page.hasPrevious();
 	}
 	
+	public boolean isHasNext() {
+		return page.hasNext();
+	}
 	
-	
-	
+	public boolean isLast() {
+		return page.isLast();
+	}
 
+	
 }
