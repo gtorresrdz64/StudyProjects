@@ -1,28 +1,28 @@
 import React from 'react'
-import {useHistory} from 'react-router-dom'
-import CityList from '../components/CityList/CityList'
-import AppFrame from '../components/AppFrame/AppFrame'
-import { Paper } from '@material-ui/core'
-import {getCities} from './../utils/transform/serviceCities'
+import { useHistory } from 'react-router-dom'
+import Paper from '@material-ui/core/Paper'
+import AppFrame from './../components/AppFrame'
+import CityList from './../components/CityList'
+import { getCities } from './../utils/serviceCities'
 
-const MainPage= () => {
+const MainPage = ({data,actions}) => {
+    const history = useHistory()
 
-    const history= useHistory()
-
-    const onClickHandler= (city,countryCode) => {
-
+    const onClickHandler = (city, countryCode) => {
         history.push(`/city/${countryCode}/${city}`)
     }
 
     return (
         <AppFrame>
-            <Paper>
-                <CityList cities={getCities()} onClickCity={onClickHandler}/>
+            <Paper elevation={3}>
+                <CityList 
+                    data= {data}
+                    cities={getCities()} 
+                    onClickCity={onClickHandler} 
+                    actions={actions}/>
             </Paper>
-        </AppFrame>           
+        </AppFrame>
     )
 }
 
-
 export default MainPage
-

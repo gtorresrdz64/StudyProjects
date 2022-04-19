@@ -2,10 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import useVanta from './../../hooks/useVanta'
 
-
-const WelcomeScreen= ({children}) => {
-
-    const myRefDiv= useVanta()
+const WelcomeScreen = ({ children }) => {
+    const myRefDiv = useVanta()
 
     return (
         <div className="full" ref={myRefDiv}>
@@ -15,7 +13,7 @@ const WelcomeScreen= ({children}) => {
 }
 
 WelcomeScreen.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
 }
 
 export default WelcomeScreen

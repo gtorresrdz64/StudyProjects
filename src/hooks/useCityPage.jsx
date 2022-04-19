@@ -1,47 +1,58 @@
-import { useState , useEffect } from 'react'
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { useEffect, useDebugValue } from 'react'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 import { getForecastUrl } from './../utils/urls'
 import getChartData from './../utils/transform/getChartData'
-import getForecastItemList from '../utils/transform/getForecastItemList'
+import getForecastItemList from './../utils/transform/getForecastItemList'
+import { getCityCode } from './../utils/utils'
 
-const useCityPage = () => {
+const useCityPage = (allChartData,allForecastItemList,actions) => {
+    
+    
+    //const [chartData, setChartData] = useState(null)
+    //const [forecastItemList, setForecastItemList] = useState(null)
 
-    const [chartData, setChartData] = useState(null)
-    const [forecastItemList,setForecastItemList] = useState(null)
+    const { city, countryCode } = useParams()
 
-    const {city,countryCode} = useParams()
+    useDebugValue(`useCityPage ${city}`)
 
-    //useDebugValue(`useCityPage: ${city}`)
+    console.log(`Ciudad: ${city} Country Code: ${countryCode}`)
 
     useEffect(() => {
+        const getForecast = async () => {
+            const url = getForecastUrl({ city, countryCode })
+            const cityCode = getCityCode(city,countryCode)
 
-        const getForecast= async () => {
+            console.log("URL: "+url)
+            console.log("CityCode: "+cityCode)
 
-            const url= getForecastUrl({city,countryCode})
-            try{
-
+            try {
                 const { data } = await axios.get(url)
-
-                const dataAux= getChartData(data)
-
-                setChartData(dataAux)
-               
-                const  forecastItemListAux= getForecastItemList(data)
                 
-                setForecastItemList(forecastItemListAux)
+                const dataAux = getChartData(data)
 
-            }catch(error){
-                    console.log("Error",error)
-            }    
+                //onSetChartData({[cityCode]: dataAux})
+                actions({ type: "SET_CHART_DATA",payload:{ [cityCode]: dataAux } })
+
+                const forecastItemListAux = getForecastItemList(data)
+
+                //onSetForecastItemList({[cityCode]:forecastItemListAux})    
+                actions({type:"SET_FORECAST_ITEM_LIST",payload: { [cityCode]:forecastItemListAux } })
+                
+            } catch (error) {
+                console.log(error)            
+            }
         }
+        const cityCode= getCityCode(city,countryCode)
 
-        getForecast()
+        if(allChartData && allForecastItemList&&allChartData[cityCode]&&allForecastItemList[cityCode]){
+            getForecast()
+        }
+        
 
-    }, [city,countryCode])
+    }, [city, countryCode,actions,allChartData,allForecastItemList])
 
-    return { city, countryCode, chartData, forecastItemList }
-
+    return { city, countryCode }
 }
 
 export default useCityPage

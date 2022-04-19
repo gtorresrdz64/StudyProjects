@@ -1,13 +1,12 @@
 import React from 'react'
-import 'typeface-roboto'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 
-const CityInfo = ({city,country}) => {
+const CityInfo = ({ city, country }) => {
     return (
         <>
-            <Typography display="inline" variant="h4">{city},</Typography>
-            <Typography display="inline" variant="h5">{country}</Typography>
+            <Typography display="inline" variant="h4">{city}, </Typography>
+            <Typography display="inline" variant="h6">{country}</Typography>
         </>
     )
 }
