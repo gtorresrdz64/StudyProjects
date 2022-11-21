@@ -16,7 +16,7 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.1",
     "recharts": "^2.0.10",
     "three": "^0.135.0",
     "typeface-roboto": "^1.1.13",
@@ -61,11 +61,11 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-links": "^6.2.9",
     "@storybook/addon-viewport": "^6.3.2",
     "@storybook/node-logger": "^6.2.9",
     "@storybook/preset-create-react-app": "^3.1.7",
-    "@storybook/react": "^6.4.9"
+    "@storybook/react": "^6.5.13"
   }
 }
